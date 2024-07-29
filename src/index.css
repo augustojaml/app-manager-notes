@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --app-700: #212228;
+    --app-600: #292a30;
+    --app-500: #6a6a6c;
+
+    --app-pink-500: #fed0fd;
+    --app-pink-400: #fee5fd;
+
+    --app-blue-500: #9bd1de;
+    --app-blue-400: #a6dce9;
+
+    --app-yellow-500: #ffefbe;
+    --app-yellow-400: #fff5df;
+
+    --app-green-500: #a1e3a1;
+    --app-green-400: #bdf4bd;
+
+    --app-orange-500: #ffc299;
+    --app-orange-400: #ffd8b3;
+
+    --app-white-500: #e5e5e5;
+    --app-white-400: #ffffff;
+  }
+}
