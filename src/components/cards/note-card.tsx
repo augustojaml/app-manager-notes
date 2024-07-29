@@ -1,9 +1,8 @@
 import { INote } from '@global/local-storage'
 import useNoteStore from '@global/store/use-note-store'
-import { bodyParser } from '@global/utils/body-parse'
 import { resizeTextArea } from '@global/utils/resize-text-area'
 import { setNewOffset } from '@global/utils/set-new-offset'
-import { Trash } from 'lucide-react'
+import { RefreshCcw, Trash } from 'lucide-react'
 import {
   FC,
   HtmlHTMLAttributes,
@@ -29,12 +28,24 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState<IPosition>({ x: 0, y: 0 })
   const [zIndex, setZIndex] = useState(1)
-  const { updateNotePosition, deleteNote } = useNoteStore()
+  const { updateNotePosition, deleteNote, updateNoteBody } = useNoteStore()
 
-  const body = bodyParser(note.body)
+  const [textBody, setTextBody] = useState(note.body)
+  const [isTyping, setIsTyping] = useState(false)
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(
+    null,
+  )
+  const [typingStartTimer, setTypingStartTimer] =
+    useState<NodeJS.Timeout | null>(null)
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
+      if (
+        textAreaRef.current &&
+        textAreaRef.current.contains(e.target as Node)
+      ) {
+        return
+      }
       setIsDragging(true)
       setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y })
       setZIndex(10)
@@ -60,6 +71,33 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
     setIsDragging(false)
     setZIndex(1)
   }, [])
+
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setTextBody(event.target.value)
+
+      if (!isTyping && !typingStartTimer) {
+        setTypingStartTimer(
+          setTimeout(() => {
+            setIsTyping(true)
+          }, 1000),
+        )
+      }
+
+      if (debounceTimer) {
+        clearTimeout(debounceTimer)
+      }
+
+      setDebounceTimer(
+        setTimeout(() => {
+          updateNoteBody({ ...note, body: textBody })
+          setIsTyping(false)
+          setTypingStartTimer(null)
+        }, 2000),
+      )
+    },
+    [isTyping, typingStartTimer, debounceTimer, updateNoteBody, note, textBody],
+  )
 
   useEffect(() => {
     if (isDragging) {
@@ -94,19 +132,26 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
       {...rest}
     >
       <div
-        className="flex items-center justify-between rounded-t p-3"
+        className="flex h-8 items-center justify-between rounded-t p-3"
         style={{ backgroundColor: note.colors.colorHeader }}
       >
         <button onClick={() => deleteNote(note)}>
           <Trash className="h-4 w-4" />
         </button>
+        {isTyping && (
+          <div className="flex items-center gap-2">
+            <RefreshCcw className="h-4 w-4 animate-spin" />
+            <span className="text-sm">Salvando</span>
+          </div>
+        )}
       </div>
       <div className="rounded-b p-4">
         <textarea
           ref={textAreaRef}
           style={{ color: note.colors.colorText }}
           className="w-full resize-none border-none bg-inherit focus:h-full focus:w-full focus:bg-inherit focus:outline-none"
-          defaultValue={body}
+          value={textBody}
+          onChange={handleInputChange}
           onInput={() => resizeTextArea(textAreaRef)}
         />
       </div>

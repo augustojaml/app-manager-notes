@@ -27,6 +27,7 @@ interface NoteStore {
   addNote: (note: INote) => void
   loadNotes: () => void
   updateNotePosition: (note: INote) => void
+  updateNoteBody: (note: INote) => void
   updateNoteColor: (colors: INote['colors']) => void
   changeSelectedNote: (note: INote) => void
   deleteNote: (note: INote) => void
@@ -60,6 +61,16 @@ const useNoteStore = create<NoteStore>((set) => ({
           : findNote,
       )
       LocalStorage.updatePosition(note)
+      return { notes: updatedNotes }
+    })
+  },
+
+  updateNoteBody: (note: INote) => {
+    set((state) => {
+      const updatedNotes = state.notes.map((findNote) =>
+        findNote.id === note.id ? { ...findNote, body: note.body } : findNote,
+      )
+      LocalStorage.updateNoteBody(note)
       return { notes: updatedNotes }
     })
   },
