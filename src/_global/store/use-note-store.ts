@@ -1,4 +1,4 @@
-import { INote, LocalStorage } from '@global/local-storage'
+import { INote, LocalNoteStorage } from '@global/local-storage/note'
 import { create } from 'zustand'
 
 export interface ISelectedNote {
@@ -25,7 +25,7 @@ interface NoteStore {
   notes: INote[]
   selectedNote: ISelectedNote
   addNote: (note: INote) => void
-  loadNotes: () => void
+  loadNotes: (username: string | null) => void
   updateNotePosition: (note: INote) => void
   updateNoteBody: (note: INote) => void
   updateNoteColor: (colors: INote['colors']) => void
@@ -39,14 +39,14 @@ const useNoteStore = create<NoteStore>((set) => ({
   addNote: (note: INote) => {
     set((state) => {
       const updatedNotes = [...state.notes, note]
-      LocalStorage.create(note)
+      LocalNoteStorage.create(note)
       return { notes: updatedNotes }
     })
   },
 
-  loadNotes: () => {
+  loadNotes: (username: string | null) => {
     try {
-      const notes = LocalStorage.get()
+      const notes = LocalNoteStorage.get(username)
       set({ notes })
     } catch (error) {
       console.error(error)
@@ -60,7 +60,7 @@ const useNoteStore = create<NoteStore>((set) => ({
           ? { ...findNote, position: note.position }
           : findNote,
       )
-      LocalStorage.updatePosition(note)
+      LocalNoteStorage.updatePosition(note)
       return { notes: updatedNotes }
     })
   },
@@ -70,7 +70,7 @@ const useNoteStore = create<NoteStore>((set) => ({
       const updatedNotes = state.notes.map((findNote) =>
         findNote.id === note.id ? { ...findNote, body: note.body } : findNote,
       )
-      LocalStorage.updateNoteBody(note)
+      LocalNoteStorage.updateNoteBody(note)
       return { notes: updatedNotes }
     })
   },
@@ -98,7 +98,7 @@ const useNoteStore = create<NoteStore>((set) => ({
         (note) => note.id === state.selectedNote.id,
       )
       if (updatedNote) {
-        LocalStorage.updateColors(updatedNote)
+        LocalNoteStorage.updateColors(updatedNote)
       }
       return { notes: updatedNotes }
     })
@@ -108,7 +108,7 @@ const useNoteStore = create<NoteStore>((set) => ({
       const updatedNotes = state.notes.filter(
         (findNote) => findNote.id !== note.id,
       )
-      LocalStorage.deleteNote(note)
+      LocalNoteStorage.deleteNote(note)
       return { notes: updatedNotes }
     })
   },

@@ -1,15 +1,18 @@
 import useNoteStore from '@global/store/use-note-store'
-import { NoteCard } from '@pages/notes/components/cards/note-card'
+import { useUserStore } from '@global/store/use-user-store'
+import { NoteCard } from '@pages/app/components/cards/note-card'
 import { useEffect } from 'react'
 
-export const Notes = () => {
+export const NotesList = () => {
   const { notes, loadNotes, changeSelectedNote } = useNoteStore(
     (store) => store,
   )
 
+  const { username } = useUserStore((store) => store)
+
   useEffect(() => {
-    loadNotes()
-  }, [loadNotes])
+    loadNotes(username)
+  }, [loadNotes, username])
 
   return (
     <div>
@@ -24,4 +27,4 @@ export const Notes = () => {
   )
 }
 
-export default Notes
+export default NotesList

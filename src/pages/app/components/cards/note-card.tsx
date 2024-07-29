@@ -1,4 +1,4 @@
-import { INote } from '@global/local-storage'
+import { INote } from '@global/local-storage/note'
 import useNoteStore from '@global/store/use-note-store'
 import { resizeTextArea } from '@global/utils/resize-text-area'
 import { setNewOffset } from '@global/utils/set-new-offset'
@@ -74,13 +74,14 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setTextBody(event.target.value)
+      const newBody = event.target.value
+      setTextBody(newBody)
 
       if (!isTyping && !typingStartTimer) {
         setTypingStartTimer(
           setTimeout(() => {
             setIsTyping(true)
-          }, 1000),
+          }, 0),
         )
       }
 
@@ -90,13 +91,13 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
 
       setDebounceTimer(
         setTimeout(() => {
-          updateNoteBody({ ...note, body: textBody })
+          updateNoteBody({ ...note, body: newBody })
           setIsTyping(false)
           setTypingStartTimer(null)
-        }, 2000),
+        }, 1000),
       )
     },
-    [isTyping, typingStartTimer, debounceTimer, updateNoteBody, note, textBody],
+    [isTyping, typingStartTimer, debounceTimer, updateNoteBody, note],
   )
 
   useEffect(() => {

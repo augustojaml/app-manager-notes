@@ -33,7 +33,7 @@
         "./src/assets/*"
       ],
       "@components/*": [
-        "src/pages/notes/components/*"
+        "src/pages/app/components/*"
       ],
       "@pages/*": [
         "./src/pages/*"

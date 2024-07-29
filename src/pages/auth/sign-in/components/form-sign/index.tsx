@@ -1,6 +1,8 @@
 import { Button } from '@global/components/button'
 import { Input } from '@global/components/input'
+import { useUserStore } from '@global/store/use-user-store'
 import { Form, Formik } from 'formik'
+import { Navigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
 const authSchema = Yup.object().shape({
@@ -15,6 +17,12 @@ const DEFAULT_AUTH = {
 }
 
 export const FormSignIn = () => {
+  const { signIn, username } = useUserStore((store) => store)
+
+  if (username) {
+    return <Navigate to="/" />
+  }
+
   return (
     <div className="flex w-full max-w-md flex-col gap-4 rounded-lg bg-app-600 p-8">
       <strong className="text-[var(--app-green-500)]">Entrar</strong>
@@ -24,7 +32,7 @@ export const FormSignIn = () => {
         validateOnChange={false}
         validateOnBlur={true}
         className="mb-4 flex flex-col gap-2"
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => signIn(values.username)}
       >
         {({ errors }) => (
           <Form className="flex flex-col gap-4">
