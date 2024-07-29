@@ -33,7 +33,7 @@
         "./src/assets/*"
       ],
       "@components/*": [
-        "./src/components/*"
+        "src/pages/notes/components/*"
       ],
       "@pages/*": [
         "./src/pages/*"

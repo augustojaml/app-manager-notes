@@ -1,5 +1,5 @@
-import { NoteCard } from '@components/cards/note-card'
 import useNoteStore from '@global/store/use-note-store'
+import { NoteCard } from '@pages/notes/components/cards/note-card'
 import { useEffect } from 'react'
 
 export const Notes = () => {
@@ -23,3 +23,5 @@ export const Notes = () => {
     </div>
   )
 }
+
+export default Notes

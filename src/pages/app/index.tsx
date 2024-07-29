@@ -1,7 +1,8 @@
-import { BoxNote } from '@components/boxes/box-note'
+import { Main } from '@global/components/main'
 import useNoteStore from '@global/store/use-note-store'
 import { IButtonsAction, randomButton } from '@global/utils/button-actions'
 import { Notes } from '@pages/notes'
+import { BoxNote } from '@pages/notes/components/boxes/box-note'
 
 export const App = () => {
   const { addNote, updateNoteColor, selectedNote } = useNoteStore(
@@ -39,12 +40,14 @@ export const App = () => {
   }
 
   return (
-    <main className="relative h-screen overflow-auto bg-app-700 bg-app-linear bg-app-4em p-10">
+    <Main>
       <BoxNote
         onAddNote={handleAddNote}
         onChangeColorNote={handleChangeColorNote}
       />
       <Notes />
-    </main>
+    </Main>
   )
 }
+
+export default App

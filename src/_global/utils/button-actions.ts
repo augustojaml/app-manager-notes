@@ -43,6 +43,14 @@ export const buttonsActions: IButtonsAction[] = [
     },
   },
   {
+    id: 'app-red',
+    colors: {
+      primary: 'var(--app-red-500)',
+      secondary: 'var(--app-red-400)',
+      text: 'var(--app-700)',
+    },
+  },
+  {
     id: 'app-white',
     colors: {
       primary: 'var(--app-white-500)',
