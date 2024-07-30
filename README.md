@@ -11,13 +11,13 @@ Este é um aplicativo CRUD de Notas construído com React, TypeScript e Tailwind
   - Editar o conteúdo das notas.
   - Excluir notas.
 
-## Images,
+## Imagens
 
 ### Sign In
 ![SignIn](sign.png)
 
 ### Note
-![SignIn](note.png)
+![Note](note.png)
 
 ## Tecnologias Utilizadas
 
@@ -45,32 +45,36 @@ Este é um aplicativo CRUD de Notas construído com React, TypeScript e Tailwind
 - Adicionar `note.localhost` no `/etc/hosts` para configuração do nginx:
 
 ```perl
-### Passos para Configuração
-1. Clone este repositório:
-  ```sh
-  git clone https://github.com/seu-usuario/note-app.git
-  cd note-app
-  ```
-
-2. Execute o Docker Compose:
-  ```sh
-  docker-compose up --build
-  ```
-
-3. Abra seu navegador e acesse `http://note.localhost`.
+127.0.0.1 note.localhost
 ```
 
-### Estrutura do Projeto
+## Passos para Configuração
 
+1 - Clone este repositório:
+
+```sh
+git clone https://github.com/seu-usuario/note-app.git
+cd note-app
+```
+
+2 - Clone este repositório:
+
+```sh
+docker-compose up --build
+```
+
+## Estrutura do Projeto
+
+```arduino
 ├── public
 ├── src
-│ ├── components
-│ ├── hooks
-│ ├── pages
-│ ├── styles
-│ ├── types
-│ ├── utils
-│ └── App.tsx
+│   ├── components
+│   ├── hooks
+│   ├── pages
+│   ├── styles
+│   ├── types
+│   ├── utils
+│   └── App.tsx
 ├── .dockerignore
 ├── .eslintrc.js
 ├── .gitignore
@@ -81,15 +85,11 @@ Este é um aplicativo CRUD de Notas construído com React, TypeScript e Tailwind
 ├── tailwind.config.js
 ├── tsconfig.json
 └── vite.config.ts
+```
 
-# Contribuição
+### Licença
 
-Se você quiser contribuir com este projeto, por favor, abra uma issue ou envie um pull request.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
 
 Feito com ❤️ por [José Augusto Monteiro Lima | augustojaml](https://github.com/augustojaml)
