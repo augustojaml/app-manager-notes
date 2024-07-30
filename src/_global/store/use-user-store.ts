@@ -19,7 +19,7 @@ export const useUserStore = create<IUserStore>((set) => ({
     UserStorage.set(username)
   },
   signOut: () => {
-    UserStorage.set(null)
+    UserStorage.remove()
     set({ username: null })
   },
 }))
