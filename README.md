@@ -1,4 +1,4 @@
-# Note App
+# Gerenciador de notas
 
 Este é um aplicativo CRUD de Notas construído com React, TypeScript e Tailwind CSS, utilizando LocalStorage como banco de dados. A aplicação permite adicionar, editar, alterar a cor e excluir notas.
 
