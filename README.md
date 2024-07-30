@@ -13,6 +13,9 @@ Este é um aplicativo CRUD de Notas construído com React, TypeScript e Tailwind
 
 ## Imagens
 
+### Gif
+![App](note.gif)
+
 ### Sign In
 ![SignIn](sign.png)
 
