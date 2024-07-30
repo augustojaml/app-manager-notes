@@ -22,11 +22,8 @@ RUN chown -R node:node /app
 # Muda para o usuário não-root
 USER node
 
-# Compila o projeto para produção
-RUN npm run build
-
 # Expõe a porta em que a aplicação irá rodar
-EXPOSE 3000
+EXPOSE 5000
 
 # Comando para iniciar a aplicação
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev"]
