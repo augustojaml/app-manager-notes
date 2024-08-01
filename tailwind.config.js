@@ -3,6 +3,9 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Josefin Sans', 'sans-serif'],
+      },
       backgroundImage: {
         'app-linear':
           'linear-gradient(var(--app-600) 0.1em, transparent 0.1em), linear-gradient(90deg, var(--app-600) 0.1em, transparent 0.1em)',
