@@ -49,7 +49,7 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content, onUpdate }) => {
   }, [editor, content])
 
   return (
-    <div id="custom-editor" className="p-4 pb-8">
+    <div id="custom-editor" className="p-4 pb-12">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>

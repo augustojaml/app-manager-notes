@@ -137,7 +137,7 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
         )}
       </div>
       <div
-        className="font-custom mb-4 rounded-b border-none text-sm"
+        className="font-custom rounded-b border-none text-sm"
         ref={editorRef}
       >
         <TipTapEditor content={textBody} onUpdate={handleEditorUpdate} />
