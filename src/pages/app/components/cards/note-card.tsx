@@ -1,6 +1,5 @@
 import { INote } from '@global/local-storage/note'
 import useNoteStore from '@global/store/use-note-store'
-import { resizeTextArea } from '@global/utils/resize-text-area'
 import { setNewOffset } from '@global/utils/set-new-offset'
 import { RefreshCcw, Trash } from 'lucide-react'
 import {
@@ -12,6 +11,8 @@ import {
   useState,
 } from 'react'
 
+import TipTapEditor from './tip-tap-editor'
+
 interface Props extends HtmlHTMLAttributes<HTMLDivElement> {
   note: INote
 }
@@ -22,8 +23,8 @@ interface IPosition {
 }
 
 export const NoteCard: FC<Props> = ({ note, ...rest }) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState<IPosition>(note.position)
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState<IPosition>({ x: 0, y: 0 })
@@ -40,10 +41,7 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      if (
-        textAreaRef.current &&
-        textAreaRef.current.contains(e.target as Node)
-      ) {
+      if (editorRef.current && editorRef.current.contains(e.target as Node)) {
         return
       }
       setIsDragging(true)
@@ -72,11 +70,9 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
     setZIndex(1)
   }, [])
 
-  const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const newBody = event.target.value
+  const handleEditorUpdate = useCallback(
+    (newBody: string) => {
       setTextBody(newBody)
-
       if (!isTyping && !typingStartTimer) {
         setTypingStartTimer(
           setTimeout(() => {
@@ -84,11 +80,9 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
           }, 0),
         )
       }
-
       if (debounceTimer) {
         clearTimeout(debounceTimer)
       }
-
       setDebounceTimer(
         setTimeout(() => {
           updateNoteBody({ ...note, body: newBody })
@@ -114,10 +108,6 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
       document.removeEventListener('mouseup', handleMouseUp)
     }
   }, [handleMouseMove, handleMouseUp, isDragging])
-
-  useEffect(() => {
-    resizeTextArea(textAreaRef)
-  }, [])
 
   return (
     <div
@@ -146,15 +136,11 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
           </div>
         )}
       </div>
-      <div className="rounded-b p-4">
-        <textarea
-          ref={textAreaRef}
-          style={{ color: note.colors.colorText }}
-          className="w-full resize-none border-none bg-inherit focus:h-full focus:w-full focus:bg-inherit focus:outline-none"
-          value={textBody}
-          onChange={handleInputChange}
-          onInput={() => resizeTextArea(textAreaRef)}
-        />
+      <div
+        className="font-custom mb-4 rounded-b border-none text-sm"
+        ref={editorRef}
+      >
+        <TipTapEditor content={textBody} onUpdate={handleEditorUpdate} />
       </div>
     </div>
   )

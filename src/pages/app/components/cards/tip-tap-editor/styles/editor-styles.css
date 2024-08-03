@@ -1,0 +1,25 @@
+#custom-editor {
+
+  @apply p-4 rounded-md shadow-sm outline-none;
+  outline: none;
+
+}
+
+#custom-editor h1 {
+  @apply text-3xl
+}
+
+
+#custom-editor h2 {
+  @apply text-2xl
+}
+
+#custom-editor h3 {
+  @apply text-xl
+}
+
+
+#custom-editor .ProseMirror {
+  @apply bg-transparent outline-none
+ /*  outline: none */
+}

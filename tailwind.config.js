@@ -4,7 +4,20 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Josefin Sans', 'sans-serif'],
+        sans: [
+          'Roboto',
+          'IBM Plex Sans',
+          'Lexend Exa',
+          'Roboto',
+          'Open Sans',
+          'sans-serif',
+        ],
+        custom: [
+          'Ubuntu Mono',
+          'Architects Daughter',
+          'Victor Mono',
+          'monospace',
+        ],
       },
       backgroundImage: {
         'app-linear':
@@ -13,6 +26,7 @@ export default {
       backgroundColor: {
         'app-700': 'var(--app-700)',
         'app-600': 'var(--app-600)',
+        'app-500': 'var(--app-500)',
       },
       backgroundSize: {
         'app-4em': '4em 4em',

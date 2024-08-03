@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/extension-heading": "^2.5.8",
+    "@tiptap/extension-link": "^2.5.8",
+    "@tiptap/react": "^2.5.8",
+    "@tiptap/starter-kit": "^2.5.8",
+    "@types/lodash": "^4.17.7",
     "formik": "^2.4.6",
     "lucide-react": "^0.416.0",
+    "prosemirror-state": "^1.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1",
@@ -19,6 +25,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -38,6 +45,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "lodash": "link:@@types/lodash",
     "postcss": "^8.4.40",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
