@@ -3,6 +3,8 @@ import './styles/editor-styles.css'
 import { debounce } from '@global/utils/debounce'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, { useEffect } from 'react'
@@ -31,6 +33,13 @@ const TipTapEditor: React.FC<TipTapEditorProps> = ({ content, onUpdate }) => {
       }),
       Heading.configure({
         levels: [1, 2, 3],
+      }),
+      TaskList,
+      TaskItem.configure({
+        nested: true, // Allows nested task items if needed
+        HTMLAttributes: {
+          class: 'custom-task-item',
+        },
       }),
     ],
     content,

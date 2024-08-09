@@ -68,7 +68,9 @@ const useNoteStore = create<NoteStore>((set) => ({
   updateNoteBody: (note: INote) => {
     set((state) => {
       const updatedNotes = state.notes.map((findNote) =>
-        findNote.id === note.id ? { ...findNote, body: note.body } : findNote,
+        findNote.id === note.id
+          ? { ...findNote, body: note.body, updatedAt: new Date() }
+          : findNote,
       )
       LocalNoteStorage.updateNoteBody(note)
       return { notes: updatedNotes }

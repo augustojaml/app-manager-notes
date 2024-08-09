@@ -1,6 +1,6 @@
 #custom-editor {
 
-  @apply p-4 rounded-md shadow-sm outline-none;
+  @apply p-4 rounded-md  outline-none;
   outline: none;
 
 }
@@ -20,6 +20,29 @@
 
 
 #custom-editor .ProseMirror {
-  @apply bg-transparent outline-none
+  @apply bg-transparent outline-none shadow-none
  /*  outline: none */
+}
+
+.custom-task-item {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 4px 0;
+}
+
+.custom-task-item input[type='checkbox'] {
+  margin-right: 8px;
+  position: relative;
+  top: 1.5px;
+  width: 15px; /* Ajusta o tamanho do checkbox, se necessário */
+  height: 15px;
+  accent-color: var(--app-500); /* Define a cor do checkbox quando marcado */
+}
+
+.custom-task-item span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+  white-space: nowrap;
 }

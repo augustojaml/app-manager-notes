@@ -1,5 +1,5 @@
 import { Editor } from '@tiptap/react'
-import { Bold, Heading1, Heading2, ItalicIcon } from 'lucide-react'
+import { Bold, Heading1, Heading2, ItalicIcon, List } from 'lucide-react'
 import { ReactNode } from 'react'
 
 interface CustomButtonProps {
@@ -76,6 +76,18 @@ export const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       >
         <ItalicIcon className="h-3 w-3" />
       </CustomButton>
+
+      {/* Button for Task List */}
+      <CustomButton
+        onClick={() => {
+          editor.chain().focus().toggleTaskList().run()
+        }}
+        disabled={!editor.can().chain().focus().toggleTaskList().run()}
+        isActive={editor.isActive('taskList')}
+      >
+        <List className="h-4 w-4" />
+      </CustomButton>
+      {/* Button for Task Item */}
     </div>
   )
 }

@@ -9,6 +9,7 @@ export interface INote {
     colorBody: string
     colorText: string
   }
+  updatedAt: Date
 }
 
 const key = '@appnote-note'

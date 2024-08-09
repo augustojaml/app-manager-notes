@@ -14,6 +14,12 @@ importers:
       '@tiptap/extension-link':
         specifier: ^2.5.8
         version: 2.5.8(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))(@tiptap/pm@2.5.8)
+      '@tiptap/extension-task-item':
+        specifier: ^2.5.9
+        version: 2.5.9(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))(@tiptap/pm@2.5.8)
+      '@tiptap/extension-task-list':
+        specifier: ^2.5.9
+        version: 2.5.9(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))
       '@tiptap/react':
         specifier: ^2.5.8
         version: 2.5.8(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))(@tiptap/pm@2.5.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -640,6 +646,17 @@ packages:
     resolution: {integrity: sha512-uiHhBIEqawX9Up2ofklotVQ5XpGIjwRL6wprZF38s1le3XpsgyhVV7oDnqDkC7ujCsGkOJJfXZtv3LsO3R2nzQ==}
     peerDependencies:
       '@tiptap/core': ^2.5.8
+
+  '@tiptap/extension-task-item@2.5.9':
+    resolution: {integrity: sha512-g4HK3r3yNE0RcXQOkJHs94Ws/fhhTqa1L5iAy4gwYKNNFFnIQl8BpE6nn9d5h33kWDN9jjY+PZmq+0PvxCLODQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.5.9
+      '@tiptap/pm': ^2.5.9
+
+  '@tiptap/extension-task-list@2.5.9':
+    resolution: {integrity: sha512-OylVo5cAh0117PzhyM8MGaUIrCskGiF7v7x6/zAHMFIqVdcbKsq+hMueVPnABfOyLcIH5Zojo3NzNOJeKeblCg==}
+    peerDependencies:
+      '@tiptap/core': ^2.5.9
 
   '@tiptap/extension-text@2.5.8':
     resolution: {integrity: sha512-CNkD51jRMdcYCqFVOkrnebqBQ6pCD3ZD5z9kO5bOC5UPZKZBkLsWdlrHGAVwosxcGxdJACbqJ0Nj+fMgIw4tNA==}
@@ -2851,6 +2868,15 @@ snapshots:
       '@tiptap/core': 2.5.8(@tiptap/pm@2.5.8)
 
   '@tiptap/extension-strike@2.5.8(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))':
+    dependencies:
+      '@tiptap/core': 2.5.8(@tiptap/pm@2.5.8)
+
+  '@tiptap/extension-task-item@2.5.9(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))(@tiptap/pm@2.5.8)':
+    dependencies:
+      '@tiptap/core': 2.5.8(@tiptap/pm@2.5.8)
+      '@tiptap/pm': 2.5.8
+
+  '@tiptap/extension-task-list@2.5.9(@tiptap/core@2.5.8(@tiptap/pm@2.5.8))':
     dependencies:
       '@tiptap/core': 2.5.8(@tiptap/pm@2.5.8)
 

@@ -1,5 +1,6 @@
 import { INote } from '@global/local-storage/note'
 import useNoteStore from '@global/store/use-note-store'
+import { formatDateTimeBR } from '@global/utils/format-datetime-br'
 import { setNewOffset } from '@global/utils/set-new-offset'
 import { RefreshCcw, Trash } from 'lucide-react'
 import {
@@ -129,15 +130,21 @@ export const NoteCard: FC<Props> = ({ note, ...rest }) => {
         <button onClick={() => deleteNote(note)}>
           <Trash className="h-4 w-4" />
         </button>
-        {isTyping && (
+        {isTyping ? (
           <div className="flex items-center gap-2">
             <RefreshCcw className="h-4 w-4 animate-spin" />
-            <span className="text-sm">Salvando</span>
+            <span className="text-[10px] italic">Salvando</span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] italic">
+              {`Atualizando em ${formatDateTimeBR(new Date(note.updatedAt).toLocaleString())}`}
+            </span>
           </div>
         )}
       </div>
       <div
-        className="font-custom rounded-b border-none text-sm"
+        className="rounded-b border-none font-custom text-sm"
         ref={editorRef}
       >
         <TipTapEditor content={textBody} onUpdate={handleEditorUpdate} />

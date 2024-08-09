@@ -28,6 +28,7 @@ export const App = () => {
         colorBody: selectedNote.colors.colorBody,
         colorText: selectedNote.colors.colorText,
       },
+      updatedAt: new Date(),
     }
     addNote(newNote)
     changeSelectedNote(newNote)
